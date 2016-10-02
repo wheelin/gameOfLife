@@ -11,7 +11,7 @@
 
 #define GRID_WIDTH 70
 #define GRID_LENGTH 40
-#define DEF_ITER_NUM 1000
+#define DEF_ITER_NUM 500
 #define DEF_PERCENT 80
 
 typedef enum
@@ -268,6 +268,5 @@ void putDiruptiveElement(cell_t grid[][GRID_LENGTH])
 {
     int x = rand() % GRID_WIDTH;
     int y = rand() % GRID_LENGTH;
-
     setNextState(grid, x, y, ALIVE);
 }
