@@ -41,7 +41,7 @@ int oneStillAlive(cell_t grid[][GRID_LENGTH]);
 ////////////////////////////////////////////////////////////////////////
 int getNeighbourNumber(cell_t grid[][GRID_LENGTH], int xPos, int yPos);
 void setNextState(cell_t grid[][GRID_LENGTH], int xPos, int yPos, state_t state);
-void putDiruptiveElement(cell_t grid[][GRID_LENGTH]);
+void putDisruptiveElement(cell_t grid[][GRID_LENGTH]);
 
 
 int main(int argc, char *argv[])
@@ -83,7 +83,7 @@ int main(int argc, char *argv[])
         displayBoard(board);
         if((tmp % 100) == 0)
         {
-            putDiruptiveElement(board);
+            putDisruptiveElement(board);
         }
         if(!oneStillAlive(board))
         {
@@ -264,7 +264,7 @@ void setNextState(cell_t grid[][GRID_LENGTH], int xPos, int yPos, state_t state)
     }
 }
 
-void putDiruptiveElement(cell_t grid[][GRID_LENGTH])
+void putDisruptiveElement(cell_t grid[][GRID_LENGTH])
 {
     int x = rand() % GRID_WIDTH;
     int y = rand() % GRID_LENGTH;
