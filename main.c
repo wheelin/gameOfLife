@@ -9,10 +9,10 @@
 #define GREEN       "\033[32m"      /* Green */
 #define BOLDGREEN   "\033[1m\033[32m"      /* Bold Green */
 
-#define GRID_WIDTH 100
+#define GRID_WIDTH 70
 #define GRID_LENGTH 40
-#define DEF_ITER_NUM 500
-#define DEF_PERCENT 40
+#define DEF_ITER_NUM 1000
+#define DEF_PERCENT 80
 
 typedef enum
 {
@@ -41,6 +41,7 @@ int oneStillAlive(cell_t grid[][GRID_LENGTH]);
 ////////////////////////////////////////////////////////////////////////
 int getNeighbourNumber(cell_t grid[][GRID_LENGTH], int xPos, int yPos);
 void setNextState(cell_t grid[][GRID_LENGTH], int xPos, int yPos, state_t state);
+void putDiruptiveElement(cell_t grid[][GRID_LENGTH]);
 
 
 int main(int argc, char *argv[])
@@ -80,6 +81,10 @@ int main(int argc, char *argv[])
     {
         nextStep(board);
         displayBoard(board);
+        if((tmp % 100) == 0)
+        {
+            putDiruptiveElement(board);
+        }
         if(!oneStillAlive(board))
         {
             printf("YOUR CELLS ARE ALL DEAD!!!\n");
@@ -129,6 +134,7 @@ void nextStep(cell_t grid[][GRID_LENGTH])
             switch(getNeighbourNumber(grid, x, y))
             {
             case 2:
+                //setNextState(grid, x, y, ALIVE);
                 setNextState(grid, x, y, grid[x][y].currentState);
                 break;
             case 3:
@@ -256,4 +262,12 @@ void setNextState(cell_t grid[][GRID_LENGTH], int xPos, int yPos, state_t state)
     {
         grid[xPos][yPos].representation = '*';
     }
+}
+
+void putDiruptiveElement(cell_t grid[][GRID_LENGTH])
+{
+    int x = rand() % GRID_WIDTH;
+    int y = rand() % GRID_LENGTH;
+
+    setNextState(grid, x, y, ALIVE);
 }
